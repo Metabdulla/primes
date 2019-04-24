@@ -1,46 +1,14 @@
-package main
+package primes
 
 import (
 	"fmt"
-	math2 "github.com/ethereum/go-ethereum/common/math"
 	"math"
 	"math/big"
-	"time"
 )
 
-func main() {
-	//201811161319
-	//201811161331937
-	//17908251027575790097
-	primes := findPrimes(10000)
-	fmt.Println(len(primes), "len primes")
-	start := time.Now()
-	ok := isPrimeFast(201811161331937, primes)
-	fmt.Println(ok)
-	fmt.Println(time.Now().Sub(start))
-	start = time.Now()
-	ok = isPrime(201811161331937)
-	fmt.Println(ok)
-	fmt.Println(time.Now().Sub(start))
-	return
-	p := math2.BigPow(2, 201811161319)
-	y := big.NewInt(1)
-	p.Sub(p, y)
-	ok = secPrime(p, 10000)
-	fmt.Println(ok)
-	return
-	ns := []int{1, 3, 0, 20}
-	for _, n := range ns {
-		prime := p.ProbablyPrime(n)
-		if prime == false {
-			fmt.Println("not prime", prime)
-			return
-		}
-	}
-	fmt.Println("prime")
-}
 
-func findPrimes(N int) []int {
+
+func FindPrimes(N int) []int {
 	var prime = make([]bool, N)
 	var result []int
 	var i, j int
@@ -65,7 +33,7 @@ func findPrimes(N int) []int {
 	return result
 }
 
-func isPrimeFast(i int, primes []int) bool {
+func IsPrimeFast(i int, primes []int) bool {
 	// Yes, this is a dumb way to write this code,
 	// but calling Sqrt repeatedly in this way demonstrates
 	// the benefit of using a direct SQRT instruction on systems
@@ -80,7 +48,7 @@ func isPrimeFast(i int, primes []int) bool {
 	k := 0
 	for j := primes[k]; float64(j) <= math.Sqrt(float64(i)); {
 		if i%j == 0 {
-			fmt.Println(j)
+			//fmt.Println(j)
 			return false
 		}
 		k++
@@ -93,7 +61,7 @@ func isPrimeFast(i int, primes []int) bool {
 	return true
 }
 
-func isPrime(i int) bool {
+func IsPrime(i int) bool {
 	// Yes, this is a dumb way to write this code,
 	// but calling Sqrt repeatedly in this way demonstrates
 	// the benefit of using a direct SQRT instruction on systems
@@ -107,7 +75,7 @@ func isPrime(i int) bool {
 	return true
 }
 
-func secPrime(x *big.Int, n int) bool {
+func SecPrime(x *big.Int, n int) bool {
 	for j := 2; j <= n; j++ {
 		y := big.NewInt(int64(j))
 		z := big.NewInt(1)
