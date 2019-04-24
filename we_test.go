@@ -69,6 +69,7 @@ func TestExample1(t *testing.T) {
 func TestExample2(t *testing.T) {
 
 	var product = 894797020974016837
+	//707829217
 	var first, second int
 	start := time.Now()
 	for i := 3; float64(i) < math.Sqrt(float64(product)); i = i + 2 {
